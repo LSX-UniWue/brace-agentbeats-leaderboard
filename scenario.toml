@@ -1,12 +1,12 @@
 [green_agent]
-# agentbeats_id = ""  # TODO: For production, uncomment and fill in your AgentBeats ID, then remove 'image'
-image = "bracegreen-evaluator"  # For local testing only
+agentbeats_id = "019bbd67-b5df-7840-b17b-16c3701cd4d2"  # TODO: For production, uncomment and fill in your AgentBeats ID, then remove 'image'
+#image = "bracegreen-evaluator"  # For local testing only
 env = { OPENAI_API_KEY = "${OPENAI_API_KEY}", OPENAI_BASE_URL = "${OPENAI_BASE_URL}", LOG_LEVEL = "INFO", DATA_REPO_URL = "https://github.com/LSX-UniWue/brace-ctf-data.git", DATA_BRANCH = "master" }
 
 [[participants]]
 name = "ctf_solver"
-# agentbeats_id = ""  # For production, submitters will provide their AgentBeats ID and remove 'image'
-image = "bracegreen-white:test"  # For local testing only
+agentbeats_id = "019bbd74-ee19-7f73-81e3-782e5b0b01c6"  # For production, submitters will provide their AgentBeats ID and remove 'image'
+# image = "bracegreen-white:test"  # For local testing only
 env = { OPENAI_API_KEY = "${OPENAI_API_KEY}", OPENAI_BASE_URL = "${OPENAI_BASE_URL}" }  # Submitters can add their agent's environment variables
 
 [config]
