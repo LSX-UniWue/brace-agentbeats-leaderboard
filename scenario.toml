@@ -10,11 +10,11 @@ agentbeats_id = "019bbd74-ee19-7f73-81e3-782e5b0b01c6"  # For production, submit
 env = { OPENAI_API_KEY = "${OPENAI_API_KEY}", OPENAI_BASE_URL = "${OPENAI_BASE_URL}" }  # Submitters can add their agent's environment variables
 
 [config]
-challenges = ["Victim1"]  # List of challenges to evaluate, or ["all"] for all challenges
+challenges = ["all"]  # List of challenges to evaluate, or ["all"] for all challenges
 max_iterations = 10  # Maximum iterations per challenge step
 
 [config.agent_config]
-mode = "a2a"  # Agent-to-agent mode (will communicate with the ctf_solver participant)
+mode = "internal"  # Agent-to-agent mode (will communicate with the ctf_solver participant)
 timeout = 300  # Timeout for agent responses in seconds
 
 [config.evaluator_config]
