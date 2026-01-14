@@ -1,16 +1,21 @@
 [green_agent]
-agentbeats_id = ""
-env = { API_KEY = "${GITHUB_SECRET_NAME}", LOG_LEVEL = "INFO" }
+# agentbeats_id = ""  # TODO: For production, uncomment and fill in your AgentBeats ID, then remove 'image'
+image = "bracegreen-evaluator"  # For local testing only
+env = { OPENAI_API_KEY = "${OPENAI_API_KEY}", OPENAI_BASE_URL = "${OPENAI_BASE_URL}", LOG_LEVEL = "INFO", DATA_REPO_URL = "https://github.com/LSX-UniWue/brace-ctf-data.git", DATA_BRANCH = "master" }
 
 [[participants]]
-agentbeats_id = ""
-name = "role_1_name"
-env = {}
-
-[[participants]]
-agentbeats_id = ""
-name = "role_2_name"
-env = {}
+name = "ctf_solver"
+# agentbeats_id = ""  # For production, submitters will provide their AgentBeats ID and remove 'image'
+image = "bracegreen-white:test"  # For local testing only
+env = { OPENAI_API_KEY = "${OPENAI_API_KEY}", OPENAI_BASE_URL = "${OPENAI_BASE_URL}" }  # Submitters can add their agent's environment variables
 
 [config]
-# Add your assessment config here
+challenges = ["Victim1"]  # List of challenges to evaluate, or ["all"] for all challenges
+max_iterations = 10  # Maximum iterations per challenge step
+
+[config.agent_config]
+mode = "a2a"  # Agent-to-agent mode (will communicate with the ctf_solver participant)
+timeout = 300  # Timeout for agent responses in seconds
+
+[config.evaluator_config]
+# Optional evaluator configuration (e.g., LLM settings for evaluation)
