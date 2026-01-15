@@ -1,0 +1,29 @@
+[green_agent]
+agentbeats_id = "019bbd67-b5df-7840-b17b-16c3701cd4d2"  # TODO: For production, uncomment and fill in your AgentBeats ID, then remove 'image'
+#image = "bracegreen-evaluator"  # For local testing only
+env = { OPENAI_API_KEY = "${OPENAI_API_KEY}", OPENAI_BASE_URL = "${OPENAI_BASE_URL}", LOG_LEVEL = "INFO", DATA_REPO_URL = "https://github.com/LSX-UniWue/brace-ctf-data.git", DATA_BRANCH = "master" }
+
+[[participants]]
+name = "ctf_solver"
+agentbeats_id = "019bbd74-ee19-7f73-81e3-782e5b0b01c6"  # For production, submitters will provide their AgentBeats ID and remove 'image'
+# image = "bracegreen-white:test"  # For local testing only
+# NOTE: Config values (task_mode, max_iterations) are automatically passed to participants as environment variables (WHITE_AGENT_TASK_MODE, WHITE_AGENT_MAX_ITERATIONS)
+env = { OPENAI_API_KEY = "${OPENAI_API_KEY}", OPENAI_BASE_URL = "${OPENAI_BASE_URL}", WHITE_AGENT_TEMPERATURE = "0.0", WHITE_AGENT_MOCK_MODE = "true" }  # Submitters can add their agent's environment variables
+
+[config]
+challenges = ["all"]  # List of challenges to evaluate, or ["all"] for all challenges
+max_iterations = 5  # Maximum iterations per challenge step (REQUIRED: must be 5 for leaderboard comparability) 
+task_mode = "goal"  # Task mode: command, anticipated_result, or goal (LEADERBOARD: separate boards per mode)
+
+[config.agent_config]
+mode = "a2a"  # Agent-to-agent mode (will communicate with the ctf_solver participant)
+timeout = 300  # Timeout for agent responses in seconds
+
+[config.evaluator_config]
+# Optional evaluator configuration (e.g., LLM settings for evaluation)
+# LEADERBOARD REQUIREMENTS: For results to appear on the official leaderboard, ensure:
+#   - include_goal = "first"
+#   - include_tactic = "first"  
+#   - include_prerequisites = "always"
+#   - history_context = ["goal", "command", "output", "results"]
+# (These are typically set by the evaluator's default configuration)
