@@ -7,13 +7,13 @@ env = { OPENAI_API_KEY = "${OPENAI_API_KEY}", OPENAI_BASE_URL = "${OPENAI_BASE_U
 name = "ctf_solver"
 agentbeats_id = "019bbd74-ee19-7f73-81e3-782e5b0b01c6"  # For production, submitters will provide their AgentBeats ID and remove 'image'
 # image = "bracegreen-white:test"  # For local testing only
-env = { OPENAI_API_KEY = "${OPENAI_API_KEY}", OPENAI_BASE_URL = "${OPENAI_BASE_URL}" }  # Submitters can add their agent's environment variables
+env = { OPENAI_API_KEY = "${OPENAI_API_KEY}", OPENAI_BASE_URL = "${OPENAI_BASE_URL}", WHITE_AGENT_TEMPERATURE = "0.0" }  # Submitters can add their agent's environment variables
 
 [config]
 challenges = ["all"]  # List of challenges to evaluate, or ["all"] for all challenges
 max_iterations = 5  # Maximum iterations per challenge step
 evaluation_protocol = "match_alternatives"  # Evaluation protocol: match_alternatives or single_path
-task_mode = "anticipated_result"  # Task mode: command, anticipated_result, or goal
+task_mode = "goal"  # Task mode: command, anticipated_result, or goal
 
 [config.agent_config]
 mode = "internal"  # Agent-to-agent mode (will communicate with the ctf_solver participant)
