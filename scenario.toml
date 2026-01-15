@@ -12,7 +12,7 @@ env = { OPENAI_API_KEY = "${OPENAI_API_KEY}", OPENAI_BASE_URL = "${OPENAI_BASE_U
 [config]
 challenges = ["all"]  # List of challenges to evaluate, or ["all"] for all challenges
 max_iterations = 5  # Maximum iterations per challenge step
-evaluation_protocol = "match_alternatives"  # Evaluation protocol: match_alternatives or single_path
+evaluation_protocol = "single_path"  # Evaluation protocol: match_alternatives or single_path
 task_mode = "goal"  # Task mode: command, anticipated_result, or goal
 
 [config.agent_config]
