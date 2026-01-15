@@ -43,11 +43,13 @@ jobs:
       - name: Create output directory
         run: mkdir -p output && chmod 777 output
 
-      - name: Export secrets as environment variables
+      - name: Export secrets and variables as environment variables
         env:
           SECRETS_JSON: ${{ toJSON(secrets) }}
+          VARS_JSON: ${{ toJSON(vars) }}
         run: |
           echo "$SECRETS_JSON" | jq -r 'to_entries|map("\(.key)=\(.value)")|.[]' > .env
+          echo "$VARS_JSON" | jq -r 'to_entries|map("\(.key)=\(.value)")|.[]' >> .env
 
       - name: Check if GHCR_TOKEN is available
         id: check_ghcr
