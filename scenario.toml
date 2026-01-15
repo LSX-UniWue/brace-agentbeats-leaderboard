@@ -13,7 +13,7 @@ env = { OPENAI_API_KEY = "${OPENAI_API_KEY}", OPENAI_BASE_URL = "${OPENAI_BASE_U
 [config]
 challenges = ["all"]  # List of challenges to evaluate, or ["all"] for all challenges
 max_iterations = 5  # Maximum iterations per challenge step (REQUIRED: must be 5 for leaderboard comparability)
-task_mode = "command"  # Task mode: command, anticipated_result, or goal (LEADERBOARD: separate boards per mode)
+task_mode = "command"  # Task mode: command, anticipated_result, or goal (LEADERBOARD: separate boards per mode) 
 
 [config.agent_config]
 mode = "a2a"  # Agent-to-agent mode (will communicate with the ctf_solver participant)
