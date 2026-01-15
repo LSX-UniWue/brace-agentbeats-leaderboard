@@ -1,0 +1,17 @@
+{
+  "image_digests": {
+    "green-agent": "ghcr.io/lsx-uniwue/brace-green@sha256:c2b2361cc00dbf1714ac2b96c1029f0002c275e1f4f27fdabc524d6b394c50be",
+    "ctf_solver": "ghcr.io/lsx-uniwue/brace-green-white@sha256:f66658d95090d545a38ff74f75695c3f0b15e1f21ec2685f653c704536d77974",
+    "agentbeats-client": "ghcr.io/agentbeats/agentbeats-client@sha256:13dfe3ef4e583a80e7ce2fe3becd0ce3b879841368a7f4fa40b6ebbabeeb014e"
+  },
+  "timestamp": "2026-01-15T23:50:05Z",
+  "github_actions": {
+    "run_url": "https://github.com/LSX-UniWue/brace-agentbeats-leaderboard/actions/runs/21050251647",
+    "run_logs_url": "https://api.github.com/repos/LSX-UniWue/brace-agentbeats-leaderboard/actions/runs/21050251647/logs",
+    "ref": "refs/heads/baseline-test",
+    "sha": "acf1bf3fd6c9fa60df2a07087ba1ff42fb1ba8bb",
+    "repository_url": "https://github.com/LSX-UniWue/brace-agentbeats-leaderboard",
+    "workflow_ref": "LSX-UniWue/brace-agentbeats-leaderboard/.github/workflows/run-scenario.yml@refs/heads/baseline-test",
+    "workflow_sha": "acf1bf3fd6c9fa60df2a07087ba1ff42fb1ba8bb"
+  }
+}
