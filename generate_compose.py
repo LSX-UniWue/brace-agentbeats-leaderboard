@@ -178,15 +178,24 @@ def format_depends_on(services: list) -> str:
 def generate_docker_compose(scenario: dict[str, Any]) -> str:
     green = scenario["green_agent"]
     participants = scenario.get("participants", [])
+    config = scenario.get("config", {})
 
     participant_names = [p["name"] for p in participants]
+
+    # Inject config values as environment variables for participants
+    # This allows arbitrary participant containers to access config without CLI args
+    config_env = {}
+    if "task_mode" in config:
+        config_env["WHITE_AGENT_TASK_MODE"] = config["task_mode"]
+    if "max_iterations" in config:
+        config_env["WHITE_AGENT_MAX_ITERATIONS"] = str(config["max_iterations"])
 
     participant_services = "\n".join([
         PARTICIPANT_TEMPLATE.format(
             name=p["name"],
             image=p["image"],
             port=DEFAULT_PORT,
-            env=format_env_vars(p.get("env", {}))
+            env=format_env_vars({**config_env, **p.get("env", {})})
         )
         for p in participants
     ])
