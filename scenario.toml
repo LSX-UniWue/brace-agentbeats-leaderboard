@@ -10,7 +10,7 @@ image = "bracegreen-white:test"  # For local testing only
 env = { OPENAI_API_KEY = "${OPENAI_API_KEY}", OPENAI_BASE_URL = "${OPENAI_BASE_URL}" }  # Submitters can add their agent's environment variables
 
 [config]
-challenges = ["Victim1"]  # List of challenges to evaluate, or ["all"] for all challenges
+challenges = ["Funbox"]  # List of challenges to evaluate, or ["all"] for all challenges
 max_iterations = 10  # Maximum iterations per challenge step
 
 [config.agent_config]
