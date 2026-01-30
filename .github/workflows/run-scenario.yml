@@ -36,7 +36,12 @@ jobs:
             litellm-cache-
 
       - name: Create cache directory
-        run: mkdir -p .litellm_cache && chmod 777 .litellm_cache
+        run: |
+          mkdir -p .litellm_cache
+          chmod 777 .litellm_cache
+          # Make existing cache files writable (if restored from cache)
+          find .litellm_cache -type f -exec chmod 666 {} \; 2>/dev/null || true
+          find .litellm_cache -type d -exec chmod 777 {} \; 2>/dev/null || true
 
       - name: Generate docker-compose.yml
         env:
