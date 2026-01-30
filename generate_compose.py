@@ -101,6 +101,9 @@ PARTICIPANT_TEMPLATE = """  {name}:
     container_name: {name}
     command: ["--host", "0.0.0.0", "--port", "{port}", "--card-url", "http://{name}:{port}"]
     environment:{env}
+      - LITELLM_CACHE_DIR=/home/agentbeats/.litellm_cache
+    volumes:
+      - ./.litellm_cache:/home/agentbeats/.litellm_cache
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:{port}/.well-known/agent-card.json"]
       interval: 5s
