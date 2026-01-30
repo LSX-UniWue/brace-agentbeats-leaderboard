@@ -26,6 +26,8 @@ jobs:
         run: pip install tomli tomli-w pyyaml requests
 
       - name: Generate docker-compose.yml
+        env:
+          ALLOW_CUSTOM_IMAGES: "true"  # Allow testing with custom Docker images
         run: python generate_compose.py --scenario scenario.toml
 
       - name: Pull images

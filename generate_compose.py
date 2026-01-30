@@ -124,8 +124,9 @@ def resolve_image(agent: dict, name: str) -> None:
         print(f"Error: {name} has both 'image' and 'agentbeats_id' - use one or the other")
         sys.exit(1)
     elif has_image:
-        if os.environ.get("GITHUB_ACTIONS"):
+        if os.environ.get("GITHUB_ACTIONS") and not os.environ.get("ALLOW_CUSTOM_IMAGES"):
             print(f"Error: {name} requires 'agentbeats_id' for GitHub Actions (use 'image' for local testing only)")
+            print("Set ALLOW_CUSTOM_IMAGES=true to allow custom images in CI/CD")
             sys.exit(1)
         print(f"Using {name} image: {agent['image']}")
     elif has_id:
