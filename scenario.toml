@@ -5,8 +5,8 @@ env = { OPENAI_API_KEY = "${OPENAI_API_KEY}", OPENAI_BASE_URL = "${OPENAI_BASE_U
 
 [[participants]]
 name = "ctf_solver"
-agentbeats_id = "019bbd74-ee19-7f73-81e3-782e5b0b01c6"
-# image = "bracegreen-white:test"  # For local testing only
+# agentbeats_id = "019bbd74-ee19-7f73-81e3-782e5b0b01c6"  # Official white agent
+image = "ghcr.io/chrisi17/brace-green-white:main"  # Your fork with caching enabled
 env = { OPENAI_API_KEY = "${OPENAI_API_KEY}", OPENAI_BASE_URL = "${OPENAI_BASE_URL}" }  # Submitters can add their agent's environment variables
 
 [config]
