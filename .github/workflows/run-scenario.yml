@@ -1,6 +1,7 @@
 name: Run Scenario
 
 on:
+  workflow_dispatch:  # Allow manual triggering
   push:
     paths:
       - 'scenario.toml'
