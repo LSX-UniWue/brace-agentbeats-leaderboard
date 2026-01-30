@@ -26,6 +26,18 @@ jobs:
       - name: Install dependencies
         run: pip install tomli tomli-w pyyaml requests
 
+      - name: Restore LLM cache
+        uses: actions/cache@v4
+        with:
+          path: .litellm_cache
+          key: litellm-cache-${{ github.repository }}-${{ hashFiles('scenario.toml') }}
+          restore-keys: |
+            litellm-cache-${{ github.repository }}-
+            litellm-cache-
+
+      - name: Create cache directory
+        run: mkdir -p .litellm_cache && chmod 777 .litellm_cache
+
       - name: Generate docker-compose.yml
         env:
           ALLOW_CUSTOM_IMAGES: "true"  # Allow testing with custom Docker images
@@ -75,6 +87,20 @@ jobs:
 
       - name: Run assessment
         run: docker compose up --timestamps --no-color --exit-code-from agentbeats-client --abort-on-container-exit
+
+      - name: Show cache stats
+        if: always()
+        run: |
+          echo "=== LLM Cache Statistics ==="
+          if [ -d ".litellm_cache" ]; then
+            FILE_COUNT=$(find .litellm_cache -type f | wc -l)
+            CACHE_SIZE=$(du -sh .litellm_cache 2>/dev/null | cut -f1 || echo "0")
+            echo "Cache directory: .litellm_cache"
+            echo "Cached files: $FILE_COUNT"
+            echo "Cache size: $CACHE_SIZE"
+          else
+            echo "No cache directory found"
+          fi
 
       - name: Record provenance
         run: python record_provenance.py --compose docker-compose.yml --output output/provenance.json
