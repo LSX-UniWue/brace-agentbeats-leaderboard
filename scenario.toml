@@ -11,7 +11,7 @@ env = { OPENAI_API_KEY = "${OPENAI_API_KEY}", OPENAI_BASE_URL = "${OPENAI_BASE_U
 challenges = ["Funbox"]  # List of challenges to evaluate, or ["all"] for all challenges
 max_iterations = 10
 task_mode = "command"  # Task mode: command, anticipated_result, or goal
-evaluation_protocol = "single_path"  # Evaluation protocol: match_alternatives or single_path
+evaluation_protocol = "match_alternatives"  # Evaluation protocol: match_alternatives or single_path
 
 [config.agent_config]
 mode = "a2a"
