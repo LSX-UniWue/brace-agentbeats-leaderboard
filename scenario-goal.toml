@@ -9,7 +9,7 @@ env = { OPENAI_API_KEY = "${OPENAI_API_KEY}", OPENAI_BASE_URL = "${OPENAI_BASE_U
 
 [config]
 challenges = ["all"]  # All 7 challenges
-max_iterations = 3
+max_iterations = 5
 task_mode = "goal"
 evaluation_protocol = "single_path"
 
