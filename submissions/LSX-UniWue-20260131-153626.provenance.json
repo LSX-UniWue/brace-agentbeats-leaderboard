@@ -1,0 +1,17 @@
+{
+  "image_digests": {
+    "green-agent": "ghcr.io/chrisi17/brace-green@sha256:3b219382ece237ad582f8259f5b53b3b6215da7c484b8c707fa13f5e09f4e44a",
+    "ctf_solver": "ghcr.io/chrisi17/brace-green-white@sha256:47879b87b80953478d3eea098a437254b0adb11cc47a9c7238057d9613acc915",
+    "agentbeats-client": "ghcr.io/agentbeats/agentbeats-client@sha256:13dfe3ef4e583a80e7ce2fe3becd0ce3b879841368a7f4fa40b6ebbabeeb014e"
+  },
+  "timestamp": "2026-01-31T15:36:26Z",
+  "github_actions": {
+    "run_url": "https://github.com/LSX-UniWue/brace-agentbeats-leaderboard/actions/runs/21545051837",
+    "run_logs_url": "https://api.github.com/repos/LSX-UniWue/brace-agentbeats-leaderboard/actions/runs/21545051837/logs",
+    "ref": "refs/heads/test-funbox",
+    "sha": "aa453733719ae1866f1eca18a044b9db84319e52",
+    "repository_url": "https://github.com/LSX-UniWue/brace-agentbeats-leaderboard",
+    "workflow_ref": "LSX-UniWue/brace-agentbeats-leaderboard/.github/workflows/run-scenario.yml@refs/heads/test-funbox",
+    "workflow_sha": "aa453733719ae1866f1eca18a044b9db84319e52"
+  }
+}

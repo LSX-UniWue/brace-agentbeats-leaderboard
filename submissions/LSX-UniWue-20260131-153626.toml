@@ -1,0 +1,24 @@
+[green_agent]
+# agentbeats_id = "019bbd67-b5df-7840-b17b-16c3701cd4d2"  # Official image (OLD code)
+image = "ghcr.io/chrisi17/brace-green:main"  # Your fork with NEW evaluation prompts
+env = { OPENAI_API_KEY = "${OPENAI_API_KEY}", OPENAI_BASE_URL = "${OPENAI_BASE_URL}", LOG_LEVEL = "INFO", DATA_REPO_URL = "https://github.com/LSX-UniWue/brace-ctf-data.git", DATA_BRANCH = "master", LITELLM_CACHE_DISABLED = "true" }
+
+[[participants]]
+name = "ctf_solver"
+# agentbeats_id = "019bbd74-ee19-7f73-81e3-782e5b0b01c6"  # Official white agent
+image = "ghcr.io/chrisi17/brace-green-white:main"  # Your fork with caching enabled
+env = { OPENAI_API_KEY = "${OPENAI_API_KEY}", OPENAI_BASE_URL = "${OPENAI_BASE_URL}", LITELLM_CACHE_DISABLED = "true" }
+
+[config]
+challenges = ["all"]  # Run all 7 challenges
+max_iterations = 10  # Maximum iterations per challenge step
+task_mode = "command"  # Task mode: command, anticipated_result, or goal
+evaluation_protocol = "single_path"  # Validate against gold standard only (no alternatives)
+
+[config.agent_config]
+mode = "a2a"  # Agent-to-agent mode (will communicate with the ctf_solver participant)
+timeout = 300  # Timeout for agent responses in seconds
+
+[config.evaluator_config]
+# Optional evaluator configuration (e.g., LLM settings for evaluation)
+
