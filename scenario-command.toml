@@ -8,8 +8,8 @@ image = "ghcr.io/lsx-uniwue/brace-green-white:master"
 env = { OPENAI_API_KEY = "${OPENAI_API_KEY}", OPENAI_BASE_URL = "${OPENAI_BASE_URL}", LITELLM_CACHE_DISABLED = "true" }
 
 [config]
-challenges = ["Funbox"]  # Test with single challenge first
-max_iterations = 10
+challenges = ["all"]  # All 7 challenges
+max_iterations = 3
 task_mode = "command"
 evaluation_protocol = "single_path"
 
