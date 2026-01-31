@@ -19,4 +19,3 @@ timeout = 300
 
 [config.evaluator_config]
 # Uses default prompt style
-# Run 2
