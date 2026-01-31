@@ -8,14 +8,14 @@ image = "ghcr.io/lsx-uniwue/brace-green-white:master"
 env = { OPENAI_API_KEY = "${OPENAI_API_KEY}", OPENAI_BASE_URL = "${OPENAI_BASE_URL}", LITELLM_CACHE_DISABLED = "true" }
 
 [config]
-challenges = ["Funbox"]  # List of challenges to evaluate, or ["all"] for all challenges
+challenges = ["Funbox"]  # Test with single challenge first
 max_iterations = 10
-task_mode = "command"  # Task mode: command, anticipated_result, or goal
-evaluation_protocol = "single_path"  # Evaluation protocol: match_alternatives or single_path
+task_mode = "anticipated_result"
+evaluation_protocol = "single_path"
 
 [config.agent_config]
 mode = "a2a"
 timeout = 300
 
 [config.evaluator_config]
-# Optional evaluator configuration (e.g., LLM settings for evaluation)
+# Uses default prompt style

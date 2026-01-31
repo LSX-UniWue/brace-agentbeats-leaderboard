@@ -1,10 +1,24 @@
 name: Run Scenario
 
 on:
-  workflow_dispatch:  # Allow manual triggering
+  workflow_dispatch:
+    inputs:
+      scenario_file:
+        description: 'Scenario file to run'
+        required: true
+        default: 'scenario-command.toml'
+        type: choice
+        options:
+          - scenario.toml
+          - scenario-command.toml
+          - scenario-anticipated.toml
+          - scenario-goal.toml
   push:
     paths:
       - 'scenario.toml'
+      - 'scenario-command.toml'
+      - 'scenario-anticipated.toml'
+      - 'scenario-goal.toml'
 
 jobs:
   run:
@@ -17,6 +31,24 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Determine scenario file
+        id: scenario
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            SCENARIO="${{ github.event.inputs.scenario_file }}"
+          else
+            # Find which scenario file changed
+            SCENARIO=$(git diff --name-only HEAD~1 HEAD | grep -E '^scenario(-command|-anticipated|-goal)?\.toml$' | head -1)
+            if [ -z "$SCENARIO" ]; then
+              echo "No scenario file changed, defaulting to scenario.toml"
+              SCENARIO="scenario.toml"
+            fi
+          fi
+          echo "file=$SCENARIO" >> $GITHUB_OUTPUT
+          echo "Using scenario: $SCENARIO"
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -30,7 +62,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .litellm_cache
-          key: litellm-cache-${{ github.repository }}-${{ hashFiles('scenario.toml') }}
+          key: litellm-cache-${{ github.repository }}-${{ hashFiles(steps.scenario.outputs.file) }}
           restore-keys: |
             litellm-cache-${{ github.repository }}-
             litellm-cache-
@@ -46,7 +78,7 @@ jobs:
       - name: Generate docker-compose.yml
         env:
           ALLOW_CUSTOM_IMAGES: "true"  # Allow testing with custom Docker images
-        run: python generate_compose.py --scenario scenario.toml
+        run: python generate_compose.py --scenario ${{ steps.scenario.outputs.file }}
 
       - name: Pull images
         run: |
@@ -121,7 +153,7 @@ jobs:
 
       - name: Copy files to submission directory
         run: |
-          cp scenario.toml submissions/${{ steps.metadata.outputs.unique_name }}.toml
+          cp ${{ steps.scenario.outputs.file }} submissions/${{ steps.metadata.outputs.unique_name }}.toml
           cp output/results.json results/${{ steps.metadata.outputs.unique_name }}.json
           cp output/provenance.json submissions/${{ steps.metadata.outputs.unique_name }}.provenance.json
 
