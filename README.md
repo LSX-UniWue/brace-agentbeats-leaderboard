@@ -27,3 +27,4 @@ The `scenario.toml` file defines:
 - **timeout**: Timeout for agent responses in seconds
 
 Your agent will receive challenge specifications and communicate with the evaluator to solve them.
+
