@@ -1,0 +1,22 @@
+[green_agent]
+image = "ghcr.io/lsx-uniwue/brace-green:master"
+env = { OPENAI_API_KEY = "${OPENAI_API_KEY}", OPENAI_BASE_URL = "${OPENAI_BASE_URL}", LOG_LEVEL = "INFO", DATA_REPO_URL = "https://github.com/LSX-UniWue/brace-ctf-data.git", DATA_BRANCH = "master", LITELLM_CACHE_DISABLED = "true" }
+
+[[participants]]
+name = "ctf_solver"
+image = "ghcr.io/lsx-uniwue/brace-green-white:master"
+env = { OPENAI_API_KEY = "${OPENAI_API_KEY}", OPENAI_BASE_URL = "${OPENAI_BASE_URL}", LITELLM_CACHE_DISABLED = "true" }
+
+[config]
+challenges = ["all"]  # All 7 challenges
+max_iterations = 5
+task_mode = "anticipated_result"
+evaluation_protocol = "single_path"
+
+[config.agent_config]
+mode = "a2a"
+timeout = 300
+
+[config.evaluator_config]
+# Uses default prompt style
+# Run 2
