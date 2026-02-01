@@ -11,9 +11,13 @@ agentbeats_id = ""  # For production, submitters will provide their AgentBeats I
 env = { OPENAI_API_KEY = "${OPENAI_API_KEY}", OPENAI_BASE_URL = "${OPENAI_BASE_URL}", WHITE_AGENT_TEMPERATURE = "0.0"}  # Submitters can add their agent's environment variables
 
 [config]
-challenges = ["all"]  # List of challenges to evaluate, or ["all"] for all challenges
+## don't change for leaderboard compatibility >>
 max_iterations = 5  # Maximum iterations per challenge step (REQUIRED: must be 5 for LEADERBOARD comparability)
+evaluation_protocol = "single_path" # Only evaluate against manually validated gold-standard alternatives (REQUIRED: must be single_path for LEADERBOARD comparability)
+## <<
+challenges = ["all"]  # List of challenges to evaluate, or ["all"] for all challenges (list in LEADERBOARD)
 task_mode = "anticipated_result"  # Task mode: command, anticipated_result, or goal (LEADERBOARD: separate boards per mode)
+
 
 [config.agent_config]
 mode = "a2a"  # Agent-to-agent mode
