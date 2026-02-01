@@ -1,5 +1,7 @@
 {
-  "participants": {},
+  "participants": {
+    "ctf_solver": "019bbd67-b5df-7840-b17b-16c3701cd4d2"
+  },
   "results": [
     {
       "overall_score": 0.7180559065731555,
